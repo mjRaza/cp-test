@@ -13,7 +13,6 @@ const initialState = Object.freeze({
   },
 });
 export default (state = initialState, action) => {
-  debugger;
   switch (action.type) {
     case GET_POSTS_REQUEST:
       return {

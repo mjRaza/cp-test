@@ -37,7 +37,6 @@ const Form = () => {
         isValid = false;
         Alert(`${x.key} is required.`, "error");
       }
-      debugger
       if(x.key==='email' && !!formData["email"] && !validateEmail(formData["email"])){
         isValid = false;
         Alert(`Please enter valid email`, "error");
