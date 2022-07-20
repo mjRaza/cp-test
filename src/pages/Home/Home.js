@@ -5,6 +5,8 @@ import Post from "../../components/Post/Post";
 import Button from "../../controls/Button";
 import Loader from "../../controls/Loader";
 import { getPosts } from "../../redux/posts/action";
+import NavBar from "../../components/Navbar/Navbar"
+
 import "./index.css";
 const Home = () => {
   const dispatch = useDispatch();
@@ -13,6 +15,11 @@ const Home = () => {
   const {
     posts: { data, isLoading, error },
   } = useSelector(({ posts }) => posts);
+
+
+  const user = useSelector(({ user }) => user);
+
+console.log({user})
 
   React.useEffect(() => {
     if (!data?.length) {
@@ -25,6 +32,8 @@ const Home = () => {
   }
   return (
     <div>
+      <NavBar />
+
       <h1>Posts</h1>
       {data?.map((post, i) => (
         <Post key={i} body={post.body} title={post.title} />

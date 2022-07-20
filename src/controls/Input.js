@@ -1,7 +1,7 @@
 import React from "react";
 import { InputLabel, Input } from "@mui/material";
 
-const InputField = ({ keys, id, type="text", label, required, value, onChange ,placeholder}) => {
+const InputField = ({ keys, id, type="text", label, required, value, onChange ,placeholder,error}) => {
   return (
     <div style={{marginTop:'10px',width:"100%"}}>
       <InputLabel htmlFor={id?.toString()}>{label}</InputLabel>
@@ -14,6 +14,7 @@ const InputField = ({ keys, id, type="text", label, required, value, onChange ,p
         placeholder={placeholder}
         onChange={(e) => onChange(keys, e)}
       />
+     {error && <h6 style={{color:'red',margin:'0px'}}>{error}</h6>}
     </div>
   );
 };

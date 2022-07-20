@@ -9,12 +9,12 @@
 }
 
 .formContainer{
+    margin-top: 45px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 50%;
-    background: rgb(175 253 255 / 60%);
     padding: 10px;
 }
 .imgContainer{

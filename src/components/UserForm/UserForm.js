@@ -16,6 +16,7 @@ const Form = () => {
   let navigate = useNavigate();
 
   const [formData, setFormData] = React.useState({});
+  const [error, setError] = React.useState({});
   const onChange = (name, e) => {
     let { value } = e.target;
     if (name === "profile_pic") {
@@ -35,11 +36,13 @@ const Form = () => {
     data.map((x) => {
       if (x.required && !formData[x.key]) {
         isValid = false;
-        Alert(`${x.key} is required.`, "error");
+        setError({[x.key]:`${x.key} is required.`})
+        // Alert(`${x.key} is required.`, "error");
       }
       if(x.key==='email' && !!formData["email"] && !validateEmail(formData["email"])){
         isValid = false;
-        Alert(`Please enter valid email`, "error");
+        setError({email:`Please enter valid email`})
+        // Alert(`Please enter valid email`, "error");
       }
     });
     if (isValid) {
@@ -62,7 +65,7 @@ const Form = () => {
         </div>
       )}
       {data.map((field, i) => (
-        <FormFields key={i} field={field} onChange={onChange} />
+        <FormFields key={i} field={field} onChange={onChange} error={error} />
       ))}
       <div>
         <button style={{background:colors.primary}} className="btn" type="submit" onClick={(e) => handleSubmit(e)}>

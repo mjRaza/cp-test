@@ -1,0 +1,23 @@
+[
+  {
+    "private": false,
+    "path": "/",
+    "component": "Root",
+    "exact": true
+  },
+  {
+    "path": "/page-not-found",
+    "component": "PageNotFound"
+  },
+  {
+    "private": true,
+    "path": "/home",
+    "component": "Home",
+    "exact": true
+  },
+  {
+    "private": true,
+    "path": "/add-post",
+    "component": "CreatePost"
+  }
+]

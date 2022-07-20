@@ -11,7 +11,7 @@ export default function RowRadioButtonsGroup({
   options,
   label,
   required,
-  value,
+  error,
   onChange
 }) {
   return (
@@ -32,6 +32,7 @@ export default function RowRadioButtonsGroup({
           />
         ))}
       </RadioGroup>
+     {error && <h6 style={{color:'red',margin:'0px'}}>{error}</h6>}
     </FormControl>
   );
 }

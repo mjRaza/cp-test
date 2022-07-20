@@ -5,6 +5,7 @@ import Radio from "../controls/Radio";
 const FormFields = ({
   field: { key, id, type, label, required, options, placeholder },
   onChange,
+  error
 }) => {
   switch (type) {
     case "text":
@@ -17,6 +18,7 @@ const FormFields = ({
           label={label}
           onChange={onChange}
           required={required}
+          error={error[key]}
         />
       );
     case "image":
@@ -51,6 +53,7 @@ const FormFields = ({
           label={label}
           required={required}
           onChange={onChange}
+          error={error[key]}
         />
       );
 

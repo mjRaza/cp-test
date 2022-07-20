@@ -6,7 +6,6 @@ import Loader from "../../controls/Loader";
 const Form = () => {
   let navigate = useNavigate();
   const [loading, setloading] = React.useState(true);
-
   React.useEffect(() => {
     const data = window.localStorage.getItem("userData");
     if (data) {

@@ -3,10 +3,14 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Button from "../../controls/Button";
 import InputField from "../../controls/Input";
+import Loader from "../../controls/Loader";
 import useAlert from "../../hooks/useAlert";
 import { addPost } from "../../redux/posts/action";
-import "./index.css"
+import * as api from "../../redux/posts/api";
+
+import "./index.css";
 const CreatePost = () => {
+  const [isLoading, setIsLoading] = React.useState(false);
   const [post, setPost] = React.useState({ title: "", body: "" });
   const Alert = useAlert();
   const dispatch = useDispatch();
@@ -19,12 +23,29 @@ const CreatePost = () => {
       [name]: value,
     });
   };
-  const addPostToRedux = () => {
+  const addPostToRedux = async () => {
     if (!post.body || !post.title) {
       return Alert("Please enter both title and body.", "error");
     } else {
-     dispatch(addPost(post))
-      navigate('/home')
+      const payload = {
+        title: post.title,
+        body: post.body,
+        userId: 1,
+      };
+
+      try {
+        setIsLoading(true);
+        const res = await api.sendPostToApi(payload);
+        if (res) {
+          Alert("Post created.", "success");
+        }
+
+        dispatch(addPost(post));
+        navigate("/home");
+      } catch (error) {
+        return Alert("Something went wrong.", "error");
+      }
+      setIsLoading(false);
     }
   };
   return (
@@ -43,9 +64,10 @@ const CreatePost = () => {
         onChange={onChange}
         value={post.body}
       />
-      <div style={{marginTop:'10px'}}>
-      <Button onClick={addPostToRedux} label="Save" />
+      <div style={{ marginTop: "10px" }}>
+        <Button onClick={addPostToRedux} label="Save" />
       </div>
+      {isLoading && <Loader />}
     </div>
   );
 };
